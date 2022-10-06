@@ -3,9 +3,9 @@ import './Thread.css'
 
 export default function Thread(props) {
   return (
-    <>
-    <p>{props.title}</p>
-    <p>{props.date}</p>
-    </>
+    <div className='thread'>
+      <p className='thread-date'>{props.date}</p>
+      <p className='thread-title'>{props.title}</p>
+    </div>
   )
 }
