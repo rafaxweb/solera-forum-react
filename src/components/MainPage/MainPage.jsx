@@ -1,7 +1,7 @@
 import React from 'react'
 import './MainPage.css'
 
-export default function MainPage() {
+export function MainPage() {
   return (
     <div>Threads</div>
   )
