@@ -16,6 +16,10 @@ export default function AllPosts() {
     }
   }, [])
   
+  function TestLogin(){
+    
+    localStorage.getItem("username")
+  }
 
   return (
     <>
