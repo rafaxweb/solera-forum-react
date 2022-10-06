@@ -1,4 +1,4 @@
-export const createNewPost = async(post) => {
+export const createNewPostDB = async(post) => {
 
 	const body = JSON.stringify(post);
 

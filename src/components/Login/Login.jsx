@@ -20,11 +20,11 @@ export default function Login() {
 
     e.preventDefault()
     localStorage.setItem("username", username)
-    const passwOrigin = await retrieveUserPassword("usuario")
-    if(password == passwOrigin){
+
+    const originalPassword = await retrieveUserPassword("usuario");
+    if(password == originalPassword){
       localStorage.setItem("password", password)
-      setLoginCorrecto(true);
-      //window.location.reload(false);
+      window.location.reload(false);
     }
     else{
       setLoginCorrecto(false);
