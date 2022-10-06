@@ -1,8 +1,11 @@
 import React from 'react'
 import './Post.css'
 
-export default function Post() {
+export function Post(props) {
   return (
-    <div>Post</div>
+    <div>
+      <p>{props.description}</p>
+      <p>{props.image}</p> 
+    </div>
   )
 }

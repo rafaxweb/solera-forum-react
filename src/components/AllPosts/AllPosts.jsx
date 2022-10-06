@@ -1,14 +1,17 @@
 import React from 'react'
 import './AllPosts.css'
+import { useEffect, useState } from 'react'
+import { retrievePosts } from '../../services/Post/RetrievePost'
+import { Post } from '../Post/Post'
 
-export function AllPosts() {
+export default function AllPosts() {
   
   const [post, setPosts] = useState([])
 
   useEffect(() => {
   
     return async() => {
-      const posts = await RetrievePost()
+      const posts = await retrievePosts()
       setPosts(posts)
     }
   }, [])
@@ -16,10 +19,9 @@ export function AllPosts() {
 
   return (
     <>
-      <h1>Foro</h1>
       {post.map( (posts) => { 
         return (
-          <Thread key={posts.id_post} description={posts.description} image={posts.image} />
+          <Post key={posts.id_post} description={posts.description} image={posts.image} />
         )
       } )}
     </>
