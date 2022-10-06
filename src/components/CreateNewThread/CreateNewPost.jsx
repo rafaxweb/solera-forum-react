@@ -5,11 +5,16 @@ import { createNewPostDB } from '../../services/Post/createNewPostDB'
 export default function CreateNewPost(props) {
 
 	const [category, setCategory] = useState("doubt")
+	const [visibilidad, setVisibilidad] = useState(true)
 	const [body, setBody] = useState("")
 	const [image, setImage] = useState("")
 
 	const onChangeBody = (e) => {
 		setBody(e.target.value);
+	}
+
+	const onselectVisibility = (e) => {
+		setVisibilidad(e.target.value);
 	}
 
 	const onSelectCategory = (e) => {
@@ -54,7 +59,7 @@ export default function CreateNewPost(props) {
 			"thread": {
 					"idThread": props.idThreat
 			},
-			"public": true
+			"public": visibilidad
 		}
 
 		createNewPostDB(newPost)
@@ -77,6 +82,13 @@ export default function CreateNewPost(props) {
 			<div>
 				<label htmlFor="">Imagen (url)</label>
 				<input type="text" value={image} onChange={onChangeImageUrl} />
+			</div>
+			<div>
+				<label htmlFor="">Visibilidad</label>
+				<select value={visibilidad} onChange={onselectVisibility}>
+					<option value="true">Publico</option>
+					<option value="false">privado</option>
+				</select>
 			</div>
 			<button>Enviar</button>
 		</form>
