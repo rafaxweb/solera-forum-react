@@ -1,7 +1,5 @@
 export const createNewPost = async(post) => {
 
-	console.log(post);
-
 	const body = JSON.stringify(post);
 
 	const options = {

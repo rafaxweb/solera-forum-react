@@ -1,8 +1,11 @@
 import React from 'react'
 import './Thread.css'
 
-export default function Thread() {
+export default function Thread(props) {
   return (
-    <div>Thread</div>
+    <>
+    <p>{props.title}</p>
+    <p>{props.date}</p>
+    </>
   )
 }
