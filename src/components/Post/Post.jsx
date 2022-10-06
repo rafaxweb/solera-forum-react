@@ -6,6 +6,7 @@ export function Post(props) {
     <div>
       <p>{props.description}</p>
       <p>{props.image}</p> 
+      <p>{props.category}</p>
     </div>
   )
 }

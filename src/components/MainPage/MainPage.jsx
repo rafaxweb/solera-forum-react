@@ -7,6 +7,7 @@ import './MainPage.css'
 export function MainPage() {
   
   const [threads, setThreads] = useState([{title: "a", date:"10"}])
+  const [LoginVision, setLoginVision] = useState(false)
 
   useEffect(() => {
   
@@ -16,6 +17,10 @@ export function MainPage() {
     }
   }, [])
   
+  function SetVisibilidad(){
+
+    setLoginVision(true)
+  }
 
   return (
     <>
@@ -24,10 +29,11 @@ export function MainPage() {
         return (
           <>
             <Thread key={thread.id} title={thread.title} date={thread.date} />
-            <Login></Login>
           </>
         )
       } )}
+      <button onClick={SetVisibilidad}>Iniciar sesion</button>
+      {LoginVision ? <Login></Login> : ''}
     </>
   )
 }

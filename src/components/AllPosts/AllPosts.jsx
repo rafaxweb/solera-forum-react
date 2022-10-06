@@ -25,7 +25,7 @@ export default function AllPosts() {
     <>
       {post.map( (posts) => { 
         return (
-          <Post key={posts.id_post} description={posts.description} image={posts.image} />
+          <Post key={posts.id_post} description={posts.description} image={posts.image} category={posts.category}/>
         )
       } )}
     </>

@@ -6,6 +6,7 @@ export default function Login() {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [loginCorrecto, setLoginCorrecto] = useState(true)
 
   function OnchangeUsername(e){
     setUsername(e.target.value);
@@ -15,17 +16,18 @@ export default function Login() {
     setPassword(e.target.value);
   }
 
-  //localStorage.setItem("", valor)
-  //localStorage.getItem("")
-
   async function OnClickRegister(e){
 
     e.preventDefault()
     localStorage.setItem("username", username)
-    console.log(await retrieveUserPassword("usuario"));
-    if(password === retrieveUserPassword()){
+    const passwOrigin = await retrieveUserPassword("usuario")
+    if(password == passwOrigin){
       localStorage.setItem("password", password)
+      setLoginCorrecto(true);
       //window.location.reload(false);
+    }
+    else{
+      setLoginCorrecto(false);
     }
     
   }
@@ -39,6 +41,7 @@ export default function Login() {
       <div>
         <button onClick={OnClickRegister}>Registrarse</button>
       </div>
+      {loginCorrecto ? '' : <div>Error en el registro</div>}
     </form>
   )
 }
