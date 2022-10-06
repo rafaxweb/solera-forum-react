@@ -1,8 +1,27 @@
 import React from 'react'
 import './AllPosts.css'
 
-export default function AllPosts() {
+export function AllPosts() {
+  
+  const [post, setPosts] = useState([])
+
+  useEffect(() => {
+  
+    return async() => {
+      const posts = await RetrievePost()
+      setPosts(posts)
+    }
+  }, [])
+  
+
   return (
-    <div>AllPosts</div>
+    <>
+      <h1>Foro</h1>
+      {post.map( (posts) => { 
+        return (
+          <Thread key={posts.id_post} description={posts.description} image={posts.image} />
+        )
+      } )}
+    </>
   )
 }
