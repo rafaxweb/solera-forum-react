@@ -27,7 +27,18 @@ export function MainPage() {
 
   async function onClickThread(id) {
     const tempPosts = await retrievePosts(id);  
-    setPosts(tempPosts)
+    // setPosts(tempPosts)
+    TestLogin(tempPosts)
+  }
+
+  function TestLogin(posts) {
+    
+    localStorage.getItem("username")
+    const tempArray = posts.filter( (actualPost) => {
+       return actualPost.public;
+    })
+    console.log(tempArray);
+    setPosts(tempArray); 
   }
 
   return (
@@ -40,8 +51,8 @@ export function MainPage() {
       <h1>Foro</h1>
       {threads.map( (thread) => { 
         return (
-          <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.id}>
-            <Thread key={thread.id} title={thread.title} date={thread.date} />
+          <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.id} >
+            <Thread title={thread.title} date={thread.date} />
           </div>
         )
       } )}
