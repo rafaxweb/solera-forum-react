@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { RetrieveBannedWords } from '../../services/BannedWords/RetrieveBannedWords'
 import { createNewPostDB } from '../../services/Post/createNewPostDB'
+import { retrievePosts } from '../../services/Post/RetrievePost'
 // import './CreateNewPost.css'
 
 export function CreateNewPost(props) {
@@ -79,14 +80,20 @@ export function CreateNewPost(props) {
 				containsBanned = true
 			}
 		})
-		console.log(Banned)
 
-		if(!containsBanned){
-			createNewPostDB(newPost)
-			setMensajeEnviado(true)
-			setBannedWords(false)
-			window.location.reload()
+		let posts = retrievePosts();
+		
+		for(let i=0; i<posts.length; i++){
+			if((posts.description != newPost.description) && (!containsBanned)){
+				createNewPostDB(newPost)
+				setMensajeEnviado(true)
+				setBannedWords(false)
+				window.location.reload()
+			}
 		}
+		
+		console.log(Banned)
+		
 	}
   
 	return (
