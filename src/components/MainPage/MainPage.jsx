@@ -11,6 +11,7 @@ export function MainPage() {
   
   const [threads, setThreads] = useState([{title: "a", date:"10"}])
   const [LoginVision, setLoginVision] = useState(false)
+  const [buttomLoginVision, setButtomLoginVision] = useState(true)
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
@@ -18,6 +19,10 @@ export function MainPage() {
     return async() => {
       const threads = await RetrieveThreads()
       setThreads(threads)
+      const user = localStorage.getItem("username")
+      if (user) {
+        setButtomLoginVision(false)
+      }
     }
   }, [])
   
@@ -50,13 +55,18 @@ export function MainPage() {
     
   }
 
+  const onCerrarSesion = () => {
+    localStorage.clear()
+    window.location.reload()
+  }
+
   return (
     <>
       {LoginVision ? 
         (<div className='main-page__login'>
           <Login SetVisibilidad={SetVisibilidad}></Login> 
         </div>) : '' }
-      <button onClick={SetVisibilidad}>Iniciar sesion</button>
+      {buttomLoginVision ? <button onClick={SetVisibilidad}>Iniciar sesion</button> : <button onClick={onCerrarSesion}>Cerrar sesión</button>} 
       <h1>Foro</h1>
       <p>CLick en un thread para mostrar los posts</p>
       {threads.map( (thread) => { 

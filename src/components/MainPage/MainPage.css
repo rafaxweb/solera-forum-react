@@ -10,10 +10,11 @@
 
 .thread-buttom {
     margin: auto; 
-    max-width: 800px;
+    max-width: 900px;
+    margin-top: 10px;
 }
 
 .thread-buttom:hover{
     cursor: pointer;
-    max-width: 500px;
+    max-width: 890px;
 }

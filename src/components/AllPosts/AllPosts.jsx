@@ -7,7 +7,7 @@ import { Post } from '../Post/Post'
 export default function AllPosts({posts}) {
   return (
     <>
-      <h2>Lista de posts del threat</h2>
+      <h2>Lista de posts del thread</h2>
       {posts.map( (actualPost) => {
         return (
            <Post key={actualPost.idPost} description={actualPost.description} image={actualPost.image} category={actualPost.category}/>

@@ -45,7 +45,7 @@ export default function Login(props) {
       <div>Introduzca contraseña</div>
       <input value={password} onChange={OnchangePassword}></input>
       <div>
-        <button onClick={OnClickRegister}>Registrarse</button>
+        <button onClick={OnClickRegister}>Iniciar sesión</button>
       </div>
       {loginCorrecto ? '' : <div>Error en el login: Usuario o contraseña incorrecta</div>}
     </form>

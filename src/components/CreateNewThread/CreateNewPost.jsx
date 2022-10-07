@@ -8,6 +8,7 @@ export function CreateNewPost(props) {
 	const [category, setCategory] = useState("doubt")
 	const [visibilidad, setVisibilidad] = useState(true)
 	const [Bannedwords, setBannedWords] = useState(false)
+	const [mensajeEnviado, setMensajeEnviado] = useState(false)
 	const [body, setBody] = useState("")
 	const [image, setImage] = useState("")
 
@@ -74,6 +75,7 @@ export function CreateNewPost(props) {
 		Banned.map( (actualBanned) => {
 			if(body.includes(actualBanned.word)){
 				setBannedWords(true);
+				setMensajeEnviado(false)
 				containsBanned = true
 			}
 		})
@@ -81,6 +83,9 @@ export function CreateNewPost(props) {
 
 		if(!containsBanned){
 			createNewPostDB(newPost)
+			setMensajeEnviado(true)
+			setBannedWords(false)
+			window.location.reload()
 		}
 	}
   
@@ -111,6 +116,7 @@ export function CreateNewPost(props) {
 			</div>
 			<>
 			{Bannedwords ? <div> Se han encontrado palabras baneadas </div> : ''}
+			{mensajeEnviado ? <div> Mensaje enviado </div> : ''}
 			</>
 			<button>Enviar</button>
 		</form>
