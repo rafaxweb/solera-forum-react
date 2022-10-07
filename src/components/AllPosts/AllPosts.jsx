@@ -4,17 +4,14 @@ import { useEffect, useState } from 'react'
 import { retrievePosts } from '../../services/Post/RetrievePost'
 import { Post } from '../Post/Post'
 
-export default function AllPosts() {
+export default function AllPosts({posts}) {
   
-  const [post, setPosts] = useState([])
+  const [allPosts, setAllPosts] = useState([])
 
-  useEffect(() => {
-  
-    return async() => {
-      const posts = await retrievePosts()
-      setPosts(posts)
-    }
-  }, [])
+  const test = () => {
+    console.log(posts);
+    setAllPosts(posts)
+  }
   
   function TestLogin(){
     
@@ -23,11 +20,12 @@ export default function AllPosts() {
 
   return (
     <>
-      {post.map( (posts) => { 
+      {posts.map( (actualPost) => {
+        console.log(actualPost.description);
         return (
-          <Post key={posts.id_post} description={posts.description} image={posts.image} category={posts.category}/>
+           <Post key={actualPost.idPost} description={actualPost.description} image={actualPost.image} category={actualPost.category}/>
         )
-      } )}
+          } )}
     </>
   )
 }

@@ -1,5 +1,4 @@
 import React from 'react'
-import AllPosts from '../AllPosts/AllPosts'
 import './Thread.css'
 
 export default function Thread(props) {
@@ -10,7 +9,6 @@ export default function Thread(props) {
         <p className='thread-title'>{props.title}</p>
       </div>
       <div>
-        <AllPosts></AllPosts>
       </div>
     </div>
   )
