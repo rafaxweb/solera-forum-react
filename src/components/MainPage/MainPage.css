@@ -5,8 +5,15 @@
     background-color: rgba(0, 0, 0, 0.75);
     z-index: 99;
     border: solid;
+    
 }
 
 .thread-buttom {
     margin: auto; 
+    max-width: 800px;
+}
+
+.thread-buttom:hover{
+    cursor: pointer;
+    max-width: 500px;
 }

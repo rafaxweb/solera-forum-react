@@ -17,7 +17,6 @@ export function MainPage() {
   
     return async() => {
       const threads = await RetrieveThreads()
-      console.log(threads);
       setThreads(threads)
     }
   }, [])
@@ -39,9 +38,6 @@ export function MainPage() {
     let usern = localStorage.getItem("username")
     const originalPaswword = await retrieveUserPassword(usern);
 
-    console.log(usern)
-    console.log(originalPaswword)
-
     if(passw == originalPaswword){
       setPosts(posts);
     }
@@ -49,7 +45,6 @@ export function MainPage() {
       const tempArray = posts.filter( (actualPost) => {
         return actualPost.public;
       })
-      console.log(tempArray);
       setPosts(tempArray);
     }
     
@@ -63,6 +58,7 @@ export function MainPage() {
         </div>) : '' }
       <button onClick={SetVisibilidad}>Iniciar sesion</button>
       <h1>Foro</h1>
+      <p>CLick en un thread para mostrar los posts</p>
       {threads.map( (thread) => { 
         return (
           <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >

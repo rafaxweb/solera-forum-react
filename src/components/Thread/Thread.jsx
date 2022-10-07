@@ -1,16 +1,23 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CreateNewPost } from '../CreateNewThread/CreateNewPost'
 import './Thread.css'
 
 export default function Thread(props) {
-  const test = () => {
-    console.log();
+
+  const [createPostVisible, setCreatePostVisible] = useState(false)
+
+  const onChangeVisible = () => {
+    setCreatePostVisible(!createPostVisible);
   }
 
   return (
     <div className='thread'>
-      <button onClick={test} ></button>
-      <CreateNewPost idThread={props.idThread} />
+      {createPostVisible ? (
+        <div>
+        <CreateNewPost idThread={props.idThread} />
+      </div>
+      ) : "" }
+      <button onClick={onChangeVisible} >Nuevo post</button>
 
       <div className='thread-info'>
         <p className='thread-date'>{props.date}</p>
