@@ -19,11 +19,16 @@ export function MainPage() {
   
   function SetVisibilidad(){
 
-    setLoginVision(true)
+    setLoginVision(!LoginVision)
   }
 
   return (
     <>
+      {LoginVision ? 
+        (<div className='main-page__login'>
+          <Login SetVisibilidad={SetVisibilidad}></Login> 
+        </div>) : '' }
+      <button onClick={SetVisibilidad}>Iniciar sesion</button>
       <h1>Foro</h1>
       {threads.map( (thread) => { 
         return (
@@ -32,8 +37,6 @@ export function MainPage() {
           </>
         )
       } )}
-      <button onClick={SetVisibilidad}>Iniciar sesion</button>
-      {LoginVision ? <Login></Login> : ''}
     </>
   )
 }

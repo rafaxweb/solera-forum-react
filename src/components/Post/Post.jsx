@@ -3,7 +3,7 @@ import './Post.css'
 
 export function Post(props) {
   return (
-    <div>
+    <div className='post'>
       <p>{props.description}</p>
       <p>{props.image}</p> 
       <p>{props.category}</p>

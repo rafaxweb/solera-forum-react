@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { retrieveUserPassword } from '../../services/User/retrieveUserPassword';
 import './Login.css'
 
-export default function Login() {
+export default function Login(props) {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -14,6 +14,10 @@ export default function Login() {
 
   function OnchangePassword(e){
     setPassword(e.target.value);
+  }
+
+  function OnCloseModal() {
+    props.SetVisibilidad()
   }
 
   async function OnClickRegister(e){
@@ -33,7 +37,8 @@ export default function Login() {
   }
 
   return (
-    <form>
+    <form className='login'>
+      <button onClick={OnCloseModal}>Cerrar</button>
       <div>Introduzca usuario</div>
       <input value={username} onChange={OnchangeUsername}></input>
       <div>Introduzca contraseña</div>
