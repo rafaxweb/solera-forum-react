@@ -17,6 +17,7 @@ export function MainPage() {
   
     return async() => {
       const threads = await RetrieveThreads()
+      console.log(threads);
       setThreads(threads)
     }
   }, [])
@@ -64,8 +65,8 @@ export function MainPage() {
       <h1>Foro</h1>
       {threads.map( (thread) => { 
         return (
-          <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.id} >
-            <Thread title={thread.title} date={thread.date} />
+          <div className='thread-buttom' onClick={ () => onClickThread(thread.idThread)} key={thread.idThread} >
+            <Thread idThread={thread.idThread} title={thread.title} date={thread.date} />
           </div>
         )
       } )}

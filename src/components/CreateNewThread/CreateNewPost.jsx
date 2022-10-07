@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { createNewPostDB } from '../../services/Post/createNewPostDB'
 // import './CreateNewPost.css'
 
-export default function CreateNewPost(props) {
+export function CreateNewPost(props) {
 
 	const [category, setCategory] = useState("doubt")
 	const [visibilidad, setVisibilidad] = useState(true)
@@ -28,6 +28,9 @@ export default function CreateNewPost(props) {
 	const onSubmitForm = (e) => {
 		e.preventDefault();
 
+		console.log("Id thread");
+		console.log(props.idThread);
+
 		let finalImage = "";
 
 		if (image.length === 0) {
@@ -48,16 +51,13 @@ export default function CreateNewPost(props) {
 			}
 		}
 
-		console.log(category);
-		console.log(finalImage);
-
 		const newPost =     {
 			"idPost": Math.max,
 			"description": body,
 			"category": category,
 			"image": finalImage,
 			"thread": {
-					"idThread": props.idThreat
+					"idThread": props.idThread
 			},
 			"public": visibilidad
 		}

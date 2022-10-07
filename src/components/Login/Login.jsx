@@ -22,12 +22,13 @@ export default function Login(props) {
 
   async function OnClickRegister(e){
 
-    e.preventDefault()
-    localStorage.setItem("username", username)
+    e.preventDefault();
+    localStorage.clear();
+    localStorage.setItem("username", username);
 
     const originalPassword = await retrieveUserPassword("usuario");
     if(password == originalPassword){
-      localStorage.setItem("password", password)
+      localStorage.setItem("password", password);
       window.location.reload(false);
     }
     else{
@@ -46,7 +47,7 @@ export default function Login(props) {
       <div>
         <button onClick={OnClickRegister}>Registrarse</button>
       </div>
-      {loginCorrecto ? '' : <div>Error en el registro</div>}
+      {loginCorrecto ? '' : <div>Error en el login: Usuario o contraseña incorrecta</div>}
     </form>
   )
 }
