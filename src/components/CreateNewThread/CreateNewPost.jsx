@@ -38,9 +38,6 @@ export function CreateNewPost(props) {
 		
 		let Banned = await RetrieveBannedWords();
 
-		console.log("Id thread");
-		console.log(props.idThread);
-
 		let finalImage = "";
 
 		if (image.length === 0) {
@@ -81,18 +78,18 @@ export function CreateNewPost(props) {
 			}
 		})
 
-		let posts = retrievePosts();
+		let posts = await retrievePosts(props.idThread);
 		
 		for(let i=0; i<posts.length; i++){
-			if((posts.description != newPost.description) && (!containsBanned)){
-				createNewPostDB(newPost)
-				setMensajeEnviado(true)
-				setBannedWords(false)
-				window.location.reload()
+			if((posts[i].description === newPost.description) || (containsBanned)){
+				return
 			}
 		}
 		
-		console.log(Banned)
+		createNewPostDB(newPost)
+				setMensajeEnviado(true)
+				setBannedWords(false)
+				window.location.reload()
 		
 	}
   
