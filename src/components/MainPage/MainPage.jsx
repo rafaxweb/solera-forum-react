@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { retrievePosts } from '../../services/Post/RetrievePost'
+import { retrieveUserPassword } from '../../services/User/retrieveUserPassword'
 import { RetrieveThreads } from '../../services/Thread/RetrieveThreads'
 import AllPosts from '../AllPosts/AllPosts'
 import Login from '../Login/Login'
@@ -31,14 +32,26 @@ export function MainPage() {
     TestLogin(tempPosts)
   }
 
-  function TestLogin(posts) {
+  async function TestLogin(posts) {
     
-    localStorage.getItem("username")
-    const tempArray = posts.filter( (actualPost) => {
-       return actualPost.public;
-    })
-    console.log(tempArray);
-    setPosts(tempArray); 
+    let passw = localStorage.getItem("password")
+    let usern = localStorage.getItem("username")
+    const originalPaswword = await retrieveUserPassword(usern);
+
+    console.log(usern)
+    console.log(originalPaswword)
+
+    if(passw == originalPaswword){
+      setPosts(posts);
+    }
+    else {
+      const tempArray = posts.filter( (actualPost) => {
+        return actualPost.public;
+      })
+      console.log(tempArray);
+      setPosts(tempArray);
+    }
+    
   }
 
   return (
