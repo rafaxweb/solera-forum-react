@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { RetrieveBannedWords } from '../../services/BannedWords/RetrieveBannedWords'
 import { createNewPostDB } from '../../services/Post/createNewPostDB'
 // import './CreateNewPost.css'
 
@@ -6,6 +7,7 @@ export function CreateNewPost(props) {
 
 	const [category, setCategory] = useState("doubt")
 	const [visibilidad, setVisibilidad] = useState(true)
+	const [Bannedwords, setBannedWords] = useState(false)
 	const [body, setBody] = useState("")
 	const [image, setImage] = useState("")
 
@@ -17,6 +19,10 @@ export function CreateNewPost(props) {
 		setVisibilidad(e.target.value);
 	}
 
+	const onselectBannedWords = (e) => {
+		setBannedWords(e.target.value);
+	}
+
 	const onSelectCategory = (e) => {
 		setCategory(e.target.value);
 	}
@@ -25,8 +31,10 @@ export function CreateNewPost(props) {
 		setImage(e.target.value);
 	}
 
-	const onSubmitForm = (e) => {
+	const onSubmitForm = async (e) => {
 		e.preventDefault();
+		
+		let Banned = await RetrieveBannedWords();
 
 		console.log("Id thread");
 		console.log(props.idThread);
@@ -62,7 +70,18 @@ export function CreateNewPost(props) {
 			"public": visibilidad
 		}
 
-		createNewPostDB(newPost)
+		let containsBanned = false
+		Banned.map( (actualBanned) => {
+			if(body.includes(actualBanned.word)){
+				setBannedWords(true);
+				containsBanned = true
+			}
+		})
+		console.log(Banned)
+
+		if(!containsBanned){
+			createNewPostDB(newPost)
+		}
 	}
   
 	return (
@@ -90,6 +109,9 @@ export function CreateNewPost(props) {
 					<option value="false">privado</option>
 				</select>
 			</div>
+			<>
+			{Bannedwords ? <div> Se han encontrado palabras baneadas </div> : ''}
+			</>
 			<button>Enviar</button>
 		</form>
 	)
